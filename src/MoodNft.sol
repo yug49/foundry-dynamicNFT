@@ -10,7 +10,7 @@ contract MoodNft is ERC721 {
 
     uint256 private s_tokenCounter;
     string private s_sadSvgImageUri;
-    string private s_happySvgImgaeUri;
+    string private s_happySvgImageUri;
 
     enum Mood {
         HAPPY,
@@ -25,7 +25,7 @@ contract MoodNft is ERC721 {
     ) ERC721("Mood NFT", "MN") {
         s_tokenCounter = 0;
         s_sadSvgImageUri = sadSvgImageUri;
-        s_happySvgImgaeUri = happySvgImageUri;
+        s_happySvgImageUri = happySvgImageUri;
     }
 
     function mintNft() public {
@@ -40,9 +40,9 @@ contract MoodNft is ERC721 {
             revert MoodNft__CantFlipMoodIfNotOwner();
         }
         if(s_tokenIdToMood[tokenId] == Mood.HAPPY) {
-            s_tokenIdToMood[tokenId] == Mood.SAD;
+            s_tokenIdToMood[tokenId] = Mood.SAD;
         }else {
-            s_tokenIdToMood[tokenId] == Mood.HAPPY;
+            s_tokenIdToMood[tokenId] = Mood.HAPPY;
         }
     }
 
@@ -57,7 +57,7 @@ contract MoodNft is ERC721 {
         string memory imageUri;
 
         if (s_tokenIdToMood[tokenId] == Mood.HAPPY) {
-            imageUri = s_happySvgImgaeUri;
+            imageUri = s_happySvgImageUri;
         } else {
             imageUri = s_sadSvgImageUri;
         }
@@ -71,7 +71,7 @@ contract MoodNft is ERC721 {
                         '{"name": "',
                         name(),
                         '", "description": "An NFT that reflects the owners mood.", "attributes": [{"trait_type": "moodiness", "value": 100}], "image": "',
-                        s_sadSvgImageUri,
+                        imageUri,
                         '"}'
                         )
                     ) 
