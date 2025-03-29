@@ -84,9 +84,6 @@ cast call <CONTRACT_ADDRESS> "mintNft()" --rpc-url --rpc-url $SEPOLIA_RPC_URL --
 cash call <CONTRACT_ADDRESS> "flipMood(uint256)" <TOKEN_ID> --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY --legacy -vvvvv
 ``` 
 
-```bash
-
-
 
 ### You can also use Etherscan to interact with the contract:
 
