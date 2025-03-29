@@ -1,73 +1,133 @@
-## Foundry
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+# foundry-dynamicNft
+It is a smart contract project written in [Solidity](https://docs.soliditylang.org/en/latest/) using [Foundry](https://book.getfoundry.sh/).
+- It a smart contract I developed leveraging Foundry.
+- It is a dynamic ERC-721 token (NFT) I developed using [OpenZeppline](https://github.com/OpenZeppelin/openzeppelin-contracts) library.
+- It is a SVG NFT that is 100% stored on chain, hence completly decentralized.
+- User can change the mood of the nft ([Happy](./img/happy.svg) / [Sad](./img/sad.svg)) by calling the "flipMood(uint256)" function.
 
-Foundry consists of:
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## Getting Started
 
-## Documentation
+ - [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git): You'll know you did it right if you can run `git --version` and you see a response like `git version x.x.x`
+ - [foundry](https://getfoundry.sh/): You'll know you did it right if you can run `forge --version` and you see a response like `forge 0.2.0 (816e00b 2023-03-16T00:05:26.396218Z)`
+ - [make](https://www.gnu.org/software/make/manual/make.html) (optional - either you can install `make` or you can simply substitute the make commands with forge commands by referring to the Makefile after including your .env file): You'll know you did it right if you can run `make --version` and you will see a response like `GNU Make 3.81...`
 
-https://book.getfoundry.sh/
+ 
+## Installation
 
-## Usage
-
-### Build
-
-```shell
-$ forge build
+- Install foundry-dynamicNft
+```bash
+    git clone https://github.com/yug49/foundry-dynamicNft
+    cd foundry-dynamicNft
 ```
 
-### Test
-
-```shell
-$ forge test
+- Make a .env file
+```bash
+    touch .env
 ```
 
-### Format
-
-```shell
-$ forge fmt
+- Open the .env file and fill in the details similar to:
+```env
+    SEPOLIA_RPC_URL=<YOUR SEPOLIA RPC URL>
+    ETHERSCAN_API_KEY=<YOUR ETHERSCAN API KEY>
+    SEPOLIA_PRIVATE_KEY=<YOUR PRIVATE KEY>
+```
+- Remove pre installed cache, unecessary or partially cloned modules modules etc.
+```bash
+    make clean
+    make remove
 ```
 
-### Gas Snapshots
-
-```shell
-$ forge snapshot
+- Install dependencies and libraries.
+```bash
+    make install
 ```
 
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+- Build Project
+```bash
+    make build
 ```
 
 
-Happy Svg:
-data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAwIDIwMCIgd2lkdGg9IjQwMCIgIGhlaWdodD0iNDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgZmlsbD0ieWVsbG93IiByPSI3OCIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPGcgY2xhc3M9ImV5ZXMiPgogICAgPGNpcmNsZSBjeD0iNzAiIGN5PSI4MiIgcj0iMTIiLz4KICAgIDxjaXJjbGUgY3g9IjEyNyIgY3k9IjgyIiByPSIxMiIvPgogIDwvZz4KICA8cGF0aCBkPSJtMTM2LjgxIDExNi41M2MuNjkgMjYuMTctNjQuMTEgNDItODEuNTItLjczIiBzdHlsZT0iZmlsbDpub25lOyBzdHJva2U6IGJsYWNrOyBzdHJva2Utd2lkdGg6IDM7Ii8+Cjwvc3ZnPgo=
 
-Happy Svg:
-data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8c3ZnIHdpZHRoPSIxMDI0cHgiIGhlaWdodD0iMTAyNHB4IiB2aWV3Qm94PSIwIDAgMTAyNCAxMDI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoIGZpbGw9IiMzMzMiIGQ9Ik01MTIgNjRDMjY0LjYgNjQgNjQgMjY0LjYgNjQgNTEyczIwMC42IDQ0OCA0NDggNDQ4IDQ0OC0yMDAuNiA0NDgtNDQ4Uzc1OS40IDY0IDUxMiA2NHptMCA4MjBjLTIwNS40IDAtMzcyLTE2Ni42LTM3Mi0zNzJzMTY2LjYtMzcyIDM3Mi0zNzIgMzcyIDE2Ni42IDM3MiAzNzItMTY2LjYgMzcyLTM3MiAzNzJ6Ii8+CiAgPHBhdGggZmlsbD0iI0U2RTZFNiIgZD0iTTUxMiAxNDBjLTIwNS40IDAtMzcyIDE2Ni42LTM3MiAzNzJzMTY2LjYgMzcyIDM3MiAzNzIgMzcyLTE2Ni42IDM3Mi0zNzItMTY2LjYtMzcyLTM3Mi0zNzJ6TTI4OCA0MjFhNDguMDEgNDguMDEgMCAwIDEgOTYgMCA0OC4wMSA0OC4wMSAwIDAgMS05NiAwem0zNzYgMjcyaC00OC4xYy00LjIgMC03LjgtMy4yLTguMS03LjRDNjA0IDYzNi4xIDU2Mi41IDU5NyA1MTIgNTk3cy05Mi4xIDM5LjEtOTUuOCA4OC42Yy0uMyA0LjItMy45IDcuNC04LjEgNy40SDM2MGE4IDggMCAwIDEtOC04LjRjNC40LTg0LjMgNzQuNS0xNTEuNiAxNjAtMTUxLjZzMTU1LjYgNjcuMyAxNjAgMTUxLjZhOCA4IDAgMCAxLTggOC40em0yNC0yMjRhNDguMDEgNDguMDEgMCAwIDEgMC05NiA0OC4wMSA0OC4wMSAwIDAgMSAwIDk2eiIvPgogIDxwYXRoIGZpbGw9IiMzMzMiIGQ9Ik0yODggNDIxYTQ4IDQ4IDAgMSAwIDk2IDAgNDggNDggMCAxIDAtOTYgMHptMjI0IDExMmMtODUuNSAwLTE1NS42IDY3LjMtMTYwIDE1MS42YTggOCAwIDAgMCA4IDguNGg0OC4xYzQuMiAwIDcuOC0zLjIgOC4xLTcuNCAzLjctNDkuNSA0NS4zLTg4LjYgOTUuOC04OC42czkyIDM5LjEgOTUuOCA4OC42Yy4zIDQuMiAzLjkgNy40IDguMSA3LjRINjY0YTggOCAwIDAgMCA4LTguNEM2NjcuNiA2MDAuMyA1OTcuNSA1MzMgNTEyIDUzM3ptMTI4LTExMmE0OCA0OCAwIDEgMCA5NiAwIDQ4IDQ4IDAgMSAwLTk2IDB6Ii8+Cjwvc3ZnPgo=
+    ## Deployment
+
+### Deploy On a Local Network (Anvil Testnet)
+- To Deploy on a local network first run anvil on your local terminal in current directory by running coommmand: ` make anvil`.
+- Now open another terminal and let this one run in the background
+- Run the following command:
+```bash
+make deploy
+```
+
+### Deploy on a Sepolia or Any Other Network
+- To Deploy on Sepolia, after successfully creating .env file as mentioned above.
+- Get youself some Sepolia Eth and LINK tokens and then run command:
+```bash
+make deploy ARGS="--network sepolia"
+```
+
+## Scripts
+
+- After deploying to a testnet or local net, you can run the scripts.
+
+- Using cast mint yourself a mood NFT:
+
+```bash
+cast call <CONTRACT_ADDRESS> "mintNft()" --rpc-url --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY --legacy -vvvvv
+```
+
+- After minting, you can change flip the mood by:
+
+```bash
+cash call <CONTRACT_ADDRESS> "flipMood(uint256)" <TOKEN_ID> --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY --legacy -vvvvv
+``` 
+
+```bash
+
+
+
+### You can also use Etherscan to interact with the contract:
+
+- Open [sepolia.etherscan.io](https://sepolia.etherscan.io/).
+- Search your deployed token contract address.
+- Click on Contract tab > Read Contract / Write Contract.
+- Connect your web3 wallet.
+
+
+## Estimate gas
+You can estimate how much gas things cost by running:
+```bash
+make snapshot
+```
+
+## Testing
+
+- for local anvil
+```bash
+    make test
+```
+
+## Formatting
+- to format all the solidity files:
+```bash
+    make format
+```
+
+
+## Coverage
+- To get test coverage report.
+```bash
+make test-coverage
+```
+
+
+
+
+## 🔗 Links
+Loved it? lets connect on:
+
+[![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://x.com/yugAgarwal29)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yug-agarwal-8b761b255/)
+
