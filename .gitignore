@@ -13,6 +13,7 @@ docs/
 # Dotenv file
 .env
 
-lib/
 
 broadcast/
+
+.DS_Store

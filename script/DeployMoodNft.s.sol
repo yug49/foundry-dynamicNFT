@@ -7,7 +7,7 @@ import {MoodNft} from "../src/MoodNft.sol";
 import {Base64} from "../lib/openzeppelin-contracts/contracts/utils/Base64.sol";
 
 contract DeployMoodNft is Script {
-    function run() external returns(MoodNft){
+    function run() external returns (MoodNft) {
         string memory sadSvg = vm.readFile("./img/sad.svg");
         string memory happySvg = vm.readFile("./img/happy.svg");
 
@@ -16,15 +16,14 @@ contract DeployMoodNft is Script {
         vm.stopBroadcast();
 
         return moodNft;
-
     }
 
-    function svgToImageUri(string memory svg) public pure returns(string memory){
+    function svgToImageUri(string memory svg) public pure returns (string memory) {
         //example:
         //<svg ...>
         //o/p -> data:...
         string memory baseURL = "data:image/svg+xml;base64,";
-        string memory svgBase64Encoded = Base64.encode(bytes(string(abi.encodePacked(svg))));
-        return string(abi.encodePacked(baseURL, svgBase64Encoded));
+        string memory svgBase64Encoded = Base64.encode(bytes(svg));
+        return string(string.concat(baseURL, svgBase64Encoded));
     }
 }
